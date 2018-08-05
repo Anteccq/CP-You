@@ -1,0 +1,15 @@
+﻿<Window x:Class="CP_You.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CP_You"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="74.112" Width="308.249" WindowStyle="None" AllowsTransparency="True" Background="#300000ff">
+    <Grid Background="Transparent">
+        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,10" x:Name="Panel">
+            <ProgressBar x:Name="Meter" Maximum="100" Value="{Binding Percent}"  Height="30" Width="200" Background="Transparent" Foreground="#FF00FFE8" BorderBrush="#FF00FFE8" />
+            <Slider x:Name="slider" Maximum="100" TickFrequency="1" ValueChanged="slider_ValueChanged" Value="{Binding Percent}"/>
+        </StackPanel>
+    </Grid>
+</Window>
