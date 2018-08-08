@@ -8,11 +8,11 @@ using System.Windows;
 // アセンブリに関連付けられている情報を変更するには、
 // これらの属性値を変更してください。
 [assembly: AssemblyTitle("CP-You")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("CPU Monitor")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("CP-You")]
-[assembly: AssemblyCopyright("Copyright ©  2018")]
+[assembly: AssemblyProduct("CP-You A Light weight CPU Monitor")]
+[assembly: AssemblyCopyright("Copyright ©  2018 AntiqueR")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

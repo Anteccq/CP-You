@@ -5,11 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CP_You"
         mc:Ignorable="d"
-        Title="MainWindow" Height="74.112" Width="308.249" WindowStyle="None" AllowsTransparency="True" Background="#300000ff">
+        Title="MainWindow" Height="37.112" Width="308.249" WindowStyle="None" AllowsTransparency="True" Background="#300000ff"
+        WindowStartupLocation="Manual" HorizontalAlignment="Right" VerticalAlignment="Top" Loaded="Window_Loaded" MouseLeftButtonDown="Window_MouseLeftButtonDown" ResizeMode="NoResize">
     <Grid Background="Transparent">
-        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,10" x:Name="Panel">
-            <ProgressBar x:Name="Meter" Maximum="100" Value="{Binding Percent}"  Height="30" Width="200" Background="Transparent" Foreground="#FF00FFE8" BorderBrush="#FF00FFE8" />
-            <Slider x:Name="slider" Maximum="100" TickFrequency="1" ValueChanged="slider_ValueChanged" Value="{Binding Percent}"/>
+        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0" x:Name="Panel">
+            <TextBlock Text="CPU" Foreground="Aqua" FontSize="20" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Arial"/>
+            <ProgressBar x:Name="Meter" Maximum="100" Value="{Binding Path=Percent}"  Height="30" Width="150" Background="Transparent" Foreground="#FF00FFE8" BorderBrush="#FF00FFE8" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" />
+            <TextBlock x:Name="Number" Text="{Binding Path=Percent,StringFormat={}{0}%}" Foreground="Aqua" FontSize="25" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Arial"/>
         </StackPanel>
     </Grid>
 </Window>
