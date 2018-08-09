@@ -3,15 +3,24 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:tb="http://www.hardcodet.net/taskbar" 
         xmlns:local="clr-namespace:CP_You"
         mc:Ignorable="d"
-        Title="CP-You" Height="37.112" Width="308.249" WindowStyle="None" AllowsTransparency="True" Background="#300000ff"
-        WindowStartupLocation="Manual" HorizontalAlignment="Right" VerticalAlignment="Top" Loaded="Window_Loaded" MouseLeftButtonDown="Window_MouseLeftButtonDown" ResizeMode="NoResize" Icon="icons/CP-You.ico">
+        Title="CP-You" Height="37.112" Width="280" WindowStyle="None" AllowsTransparency="True" Background="#300000ff"
+        WindowStartupLocation="Manual" HorizontalAlignment="Right" VerticalAlignment="Top" Loaded="Window_Loaded" MouseLeftButtonDown="Window_MouseLeftButtonDown" ResizeMode="NoResize" Icon="icons/CP-You.ico" Closing="Window_Closing" ShowInTaskbar="False">
     <Grid Background="Transparent">
         <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0" x:Name="Panel">
             <TextBlock Text="CPU" Foreground="Aqua" FontSize="20" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Arial"/>
             <ProgressBar x:Name="Meter" Maximum="100" Value="{Binding Path=Percent}"  Height="30" Width="150" Background="Transparent" Foreground="#FF00FFE8" BorderBrush="#FF00FFE8" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" />
             <TextBlock x:Name="Number" Text="{Binding Path=Percent,StringFormat={}{0}%}" Foreground="Aqua" FontSize="25" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Arial"/>
         </StackPanel>
+        <tb:TaskbarIcon x:Name="TaskbarIcon" IconSource="icons/CP-You.ico" ToolTipText="{Binding Path=Percent,StringFormat=CPU:{0}%}">
+            <tb:TaskbarIcon.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Exit"  BorderThickness="0" HorizontalAlignment="Left" VerticalAlignment="Center" Click="MenuItem_Click">
+                    </MenuItem>
+                </ContextMenu>
+            </tb:TaskbarIcon.ContextMenu>
+        </tb:TaskbarIcon>
     </Grid>
 </Window>

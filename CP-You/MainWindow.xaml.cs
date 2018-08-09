@@ -12,7 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Windows.Forms;
 using System.Windows.Threading;
 using System.Diagnostics;
 using System.IO;
@@ -39,13 +38,13 @@ namespace CP_You
         public int CPUpercent
         {
             get { return progress_Info.Percent; }
-            set { this.progress_Info.Percent = value;}
+            set { this.progress_Info.Percent = value; Lighter(); }
         }
 
         public MainWindow()
         {
             InitializeComponent();
-            rightEnd = Screen.PrimaryScreen.WorkingArea.Width - this.Width;
+            rightEnd = SystemParameters.WorkArea.Width - this.Width;
             if (FileRead() == false)
             {
                 this.Top = 0;
@@ -101,8 +100,8 @@ namespace CP_You
             if (pc != null)
             {
                 var db = (double)pc.NextValue();
-                int n = (int)db;
-                Meter.Value = n;
+                CPUpercent = (int)db;
+                Meter.Value = CPUpercent;
             }
         }
 
@@ -112,6 +111,7 @@ namespace CP_You
         private void Lighter()
         {
             Panel.DataContext = MeterPercent;
+            TaskbarIcon.DataContext = MeterPercent;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -126,7 +126,19 @@ namespace CP_You
         {
             this.DragMove();
             if (this.Left >= rightEnd) this.Left = rightEnd;
+            if (this.Left < 0) this.Left = 0;
             FileWrite(this.Left,this.Top);
+        }
+
+        //終了時にタスクトレイに残らないように修正
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            TaskbarIcon.Visibility = Visibility.Collapsed;
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 
@@ -142,7 +154,6 @@ namespace CP_You
 
         public Progress_info() : this(0)
         {
-
         }
 
         public Progress_info(int percent)
