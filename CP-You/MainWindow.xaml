@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CP_You"
         mc:Ignorable="d"
-        Title="MainWindow" Height="37.112" Width="308.249" WindowStyle="None" AllowsTransparency="True" Background="#300000ff"
-        WindowStartupLocation="Manual" HorizontalAlignment="Right" VerticalAlignment="Top" Loaded="Window_Loaded" MouseLeftButtonDown="Window_MouseLeftButtonDown" ResizeMode="NoResize">
+        Title="CP-You" Height="37.112" Width="308.249" WindowStyle="None" AllowsTransparency="True" Background="#300000ff"
+        WindowStartupLocation="Manual" HorizontalAlignment="Right" VerticalAlignment="Top" Loaded="Window_Loaded" MouseLeftButtonDown="Window_MouseLeftButtonDown" ResizeMode="NoResize" Icon="icons/CP-You.ico">
     <Grid Background="Transparent">
         <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0" x:Name="Panel">
             <TextBlock Text="CPU" Foreground="Aqua" FontSize="20" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Arial"/>
