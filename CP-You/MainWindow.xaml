@@ -14,11 +14,13 @@
             <ProgressBar x:Name="Meter" Maximum="100" Value="{Binding Path=Percent}"  Height="30" Width="150" Background="Transparent" Foreground="#FF00FFE8" BorderBrush="#FF00FFE8" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" />
             <TextBlock x:Name="Number" Text="{Binding Path=Percent,StringFormat={}{0}%}" Foreground="Aqua" FontSize="25" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Arial"/>
         </StackPanel>
-        <tb:TaskbarIcon x:Name="TaskbarIcon" IconSource="icons/CP-You.ico" ToolTipText="{Binding Path=Percent,StringFormat=CPU:{0}%}">
+        <tb:TaskbarIcon x:Name="TaskbarIcon" IconSource="icons/CP-You.ico" TrayLeftMouseUp="Activate"  ToolTipText="{Binding Path=Percent,StringFormat=CPU:{0}%}">
             <tb:TaskbarIcon.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Exit"  BorderThickness="0" HorizontalAlignment="Left" VerticalAlignment="Center" Click="MenuItem_Click">
+                    <MenuItem x:Name="Setting" Header="Setting">
+                        <MenuItem x:Name="AOT" Header="Always on Top" IsCheckable="True" Click="MenuItem_Checked"/>
                     </MenuItem>
+                    <MenuItem Header="Exit"  BorderThickness="0" HorizontalAlignment="Left" VerticalAlignment="Center" Click="MenuItem_Click"/>
                 </ContextMenu>
             </tb:TaskbarIcon.ContextMenu>
         </tb:TaskbarIcon>

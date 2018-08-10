@@ -62,6 +62,7 @@ namespace CP_You
             {
                 using (StreamReader sr = new StreamReader(PATH + FILE, Encoding.GetEncoding("utf-8")))
                 {
+                    Boolean check = false;
                     string data;
                     while ((data = sr.ReadLine()) != null)
                     {
@@ -75,7 +76,12 @@ namespace CP_You
                             double.TryParse((data.Replace("Top:", "")), out double Y);
                             this.Top = Y;
                         }
+                        if (data.IndexOf("is_Always_on_Top:") != -1)
+                        {
+                            Boolean.TryParse((data.Replace("is_Always_on_Top:", "")), out check);
+                        }
                     }
+                    this.AOT.IsChecked = this.Topmost = check;
                 }
             }
             else FLAG = false;
@@ -89,6 +95,7 @@ namespace CP_You
                 sw.WriteLine("DO_NOT_DELETE");
                 sw.WriteLine("Left:" + left);
                 sw.WriteLine("Top:" + top);
+                sw.WriteLine("is_Always_on_Top:" + AOT.IsChecked);
             }
         }
 
@@ -139,6 +146,17 @@ namespace CP_You
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void MenuItem_Checked(object sender, RoutedEventArgs e)
+        {
+            this.Topmost = this.AOT.IsChecked;
+            FileWrite(this.Left, this.Top);
+        }
+    
+        private void Activate(object sender, RoutedEventArgs e)
+        {
+            this.Activate();
         }
     }
 
