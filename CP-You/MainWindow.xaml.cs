@@ -23,7 +23,7 @@ namespace CP_You
     /// </summary>
     public partial class MainWindow : Window
     {
-        private string PATH = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\ProjectATR";
+        private string PATH = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\ProjectATR\CP-You";
         private const string FILE = @"\point.config";
         private DispatcherTimer refreshTimer = new DispatcherTimer(DispatcherPriority.Normal);
         private PerformanceCounter pc;
