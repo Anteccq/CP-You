@@ -25,6 +25,7 @@ namespace CP_You
     {
         private string PATH = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\ProjectATR\CP-You";
         private const string FILE = @"\point.config";
+
         private DispatcherTimer refreshTimer = new DispatcherTimer(DispatcherPriority.Normal);
         private PerformanceCounter pc;
         private double rightEnd;
@@ -45,11 +46,12 @@ namespace CP_You
         {
             InitializeComponent();
             rightEnd = SystemParameters.WorkArea.Width - this.Width;
-            if (FileRead() == false)
+            if (!FileRead())
             {
                 this.Top = 0;
                 this.Left = rightEnd;
             }
+            MessageBox.Show(this.Left + " : " + this.Top + " : " + rightEnd);
             MeterPercent = new Progress_info();
             refreshTimer.Interval = new TimeSpan(0, 0, 1);
             refreshTimer.Tick += RefreshTimer_Tick;
@@ -66,20 +68,9 @@ namespace CP_You
                     string data;
                     while ((data = sr.ReadLine()) != null)
                     {
-                        if (data.IndexOf("Left:") != -1)
-                        {
-                            double.TryParse((data.Replace("Left:", "")), out double X);
-                            this.Left = X;
-                        }
-                        if (data.IndexOf("Top:") != -1)
-                        {
-                            double.TryParse((data.Replace("Top:", "")), out double Y);
-                            this.Top = Y;
-                        }
-                        if (data.IndexOf("is_Always_on_Top:") != -1)
-                        {
-                            Boolean.TryParse((data.Replace("is_Always_on_Top:", "")), out check);
-                        }
+                        if (data.IndexOf("Left:") != -1) this.Left = double.Parse(data.Replace("Left:", ""));
+                        if (data.IndexOf("Top:") != -1) this.Top = double.Parse(data.Replace("Top:", ""));
+                        if (data.IndexOf("iAoT:") != -1) check = Boolean.Parse(data.Replace("iAoT:",""));
                     }
                     this.AOT.IsChecked = this.Topmost = check;
                 }
@@ -95,13 +86,10 @@ namespace CP_You
                 sw.WriteLine("DO_NOT_DELETE");
                 sw.WriteLine("Left:" + left);
                 sw.WriteLine("Top:" + top);
-                sw.WriteLine("is_Always_on_Top:" + AOT.IsChecked);
+                sw.WriteLine("iAoT:" + AOT.IsChecked);
             }
         }
 
-        /// <summary>
-        /// DispathcerTimerスタート後はPanel.DataContextによる子要素の更新が不可能に。不明。調査中。
-        /// </summary>
         private void RefreshTimer_Tick(object sender, EventArgs e)
         {
             if (pc != null)
@@ -134,7 +122,6 @@ namespace CP_You
             this.DragMove();
             if (this.Left >= rightEnd) this.Left = rightEnd;
             if (this.Left < 0) this.Left = 0;
-            FileWrite(this.Left,this.Top);
         }
 
         //終了時にタスクトレイに残らないように修正
@@ -145,6 +132,8 @@ namespace CP_You
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
+            FileWrite(this.Left, this.Top);
+            MessageBox.Show(this.Left + " : " + this.Top);
             this.Close();
         }
 
