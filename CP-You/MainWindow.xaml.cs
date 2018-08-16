@@ -51,7 +51,6 @@ namespace CP_You
                 this.Top = 0;
                 this.Left = rightEnd;
             }
-            MessageBox.Show(this.Left + " : " + this.Top + " : " + rightEnd);
             MeterPercent = new Progress_info();
             refreshTimer.Interval = new TimeSpan(0, 0, 1);
             refreshTimer.Tick += RefreshTimer_Tick;
@@ -133,14 +132,12 @@ namespace CP_You
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
             FileWrite(this.Left, this.Top);
-            MessageBox.Show(this.Left + " : " + this.Top);
             this.Close();
         }
 
         private void MenuItem_Checked(object sender, RoutedEventArgs e)
         {
             this.Topmost = this.AOT.IsChecked;
-            FileWrite(this.Left, this.Top);
         }
     
         private void Activate(object sender, RoutedEventArgs e)
